@@ -74,7 +74,7 @@ function getUserInfo() {
     // 插入 meta 标签
     var oMeta = document.createElement('meta');
     oMeta.content = toast;
-    oMeta.name = 'og:image';
+    oMeta.property = 'og:image';
     document.getElementsByTagName('head')[0].appendChild(oMeta);
 }
 
