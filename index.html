@@ -56,6 +56,20 @@
     </div>
 </body>
 <script>
+window.ready(function ()) {
+    alert("ready")
+
+    var toast = getQueryVariable("image")
+    alert(toast);
+
+    var metaList = document.getElementsByTagName("meta");
+    for (var i = 0; i < metaList.length; i++) {
+        if (metaList[i].getAttribute("property") == "og:image") {
+            metaList[i].content = toast;
+        }
+    }
+}
+
 function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split("&");
@@ -68,21 +82,7 @@ function getQueryVariable(variable) {
 
 
 function getUserInfo() {
-    var toast = getQueryVariable("image")
-    alert(toast);
-
-    // 插入 meta 标签
-    // var oMeta = document.createElement('meta');
-    // oMeta.content = toast;
-    // oMeta.property = 'og:image';
-    // document.getElementsByTagName('head')[0].appendChild(oMeta);
-
-    var metaList = document.getElementsByTagName("meta");
-    for (var i = 0; i < metaList.length; i++) {
-        if (metaList[i].getAttribute("property") == "og:image") {
-            metaList[i].content = toast;
-        }
-    }
+    alert("onload")
 }
 
 function openCqCity() {
