@@ -1,16 +1,8 @@
-<html >
+<html>
 
 <head>
     <link rel="dns-prefetch" href="http://p0.sgpstatp.com/">
     <link rel="dns-prefetch" href="http://s0.sgpstatp.com/">
-
-
-   
-
-    
-
-
- 
     <!-- 我的 -->
     <!-- <meta property="og:url" content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html">
     <meta property="og:type" content="article">
@@ -25,8 +17,6 @@
     <title>
         js调用java
     </title>
-
-
     <meta property="og:url" content="http://192.168.1.165/calamansi/bridge.html">
     <meta property="og:type" content="article" />
     <meta property="og:title" content="title" />
@@ -34,9 +24,7 @@
     <meta property="og:image" content="https://p0.sgpstatp.com/img/tos-alisg-i-0000/1ec67cfb286546b9be3c3d3a076cb1b0~cs_500x260.image" />
     <meta property="og:image:width" content="500" />
     <meta property="og:image:height" content="260" />
-
     <meta property="og:image:secure_url" content="https://p0.sgpstatp.com/img/tos-alisg-i-0000/1ec67cfb286546b9be3c3d3a076cb1b0~cs_500x260.image" />
-
     <style type="text/css">
     div {
         margin-top: 30px auto;
@@ -52,10 +40,7 @@
 </head>
 
 <body onload="getUserInfo();">
- 
-  
     <div>
-        <h3>浏览器打重庆城</h3>
         <p>
             <input type="button" value="打开重庆城" onclick="openCqCity();" />
             <input type="button" value="打开重庆城下载" onclick="openBrowser();" />
@@ -71,10 +56,20 @@
     </div>
 </body>
 <script>
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) { return pair[1]; }
+    }
+    return (false);
+}
 
 
 function getUserInfo() {
-    alert('Page loaded');
+    var toast = getQueryVariable("image")
+    alert(toast);
 }
 
 function openCqCity() {
@@ -92,8 +87,6 @@ function openCqCity() {
         iframe.src = 'wxcitycq://d1.wxcitycq.com/openwith';
     }
 }
-
-
 </script>
 
 </html>
