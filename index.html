@@ -52,34 +52,8 @@
 </head>
 
 <body onload="getUserInfo();">
-    <p id="show">
-        测试结果
-    </p>
-    <div>
-        <h3>数据</h3>
-        <p>
-            <input type="button" value="getUserInfo" onclick="getUserInfo();" />
-            <input type="button" value="getAppInfo" onclick="getAppInfo();" />
-            <input type="button" value="getPhoneInfo" onclick="getPhoneInfo();" />
-            <input type="button" value="getOpenId" onclick="getOpenId()">
-        </p>
-    </div>
-    <div>
-        <h3>跳转其他界面</h3>
-        <p>
-            <input type="button" value="路由(示例为暂未开通界面)" onclick="route();" />
-            <input type="button" value="登录" onclick="openLogin();" />
-            <input type="button" value="打开手厅WebView页面" onclick="openCmccClient();">
-            <input type="button" value="打开易视腾播放页" onclick="openYstClient();">
-            <input type="button" value="打开易视腾订购页面" onclick="openOrder();">
-            <br />
-            <a href="./ugc.html">ugc页面</a>
-            <br />
-            <a href="./share.html">分享</a>
-            <br />
-            <a href="./video.html">原生播放器</a>
-        </p>
-    </div>
+ 
+  
     <div>
         <h3>浏览器打重庆城</h3>
         <p>
@@ -95,59 +69,12 @@
             <br />
         </p>
     </div>
-    <div>
-        <h3>界面提示</h3>
-        <p>
-            <input type="button" value="showToast" onclick="showToast();" />
-            <br />
-            <a href="./alert.html">Alert</a>
-        </p>
-    </div>
 </body>
 <script>
+
+
 function getUserInfo() {
-    AppInterface.callHandler("getUserInfo",
-        null,
-        function(responseData) {
-            document.getElementById("show").innerHTML = "result :" + responseData;
-        });
-}
-
-function getAppInfo() {
-    AppInterface.callHandler("getAppInfo", null, function(responseData) {
-        document.getElementById("show").innerHTML = "result :" + responseData;
-    });
-}
-
-function getPhoneInfo() {
-    AppInterface.callHandler("getPhoneInfo", null, function(responseData) {
-        document.getElementById("show").innerHTML = "result :" + responseData;
-    });
-}
-
-function showToast() {
-    AppInterface.callHandler("showToast", { "duration": 0, "msg": "msg from javascript" }, null);
-}
-
-function openBrowser() {
-    // 打开系统浏览器下载界面
-    AppInterface.callHandler("openSysBrowser", { "url": "http://d1.wxcitycq.com/apk/cqcity.apk" }, function(responseData) {
-        document.getElementById("show").innerHTML = "result :" + responseData;
-    });
-}
-
-function openLogin() {
-    // 打开登录
-    AppInterface.callHandler("openLogin", null, function(responseData) {
-        document.getElementById("show").innerHTML = "result :" + responseData;
-    });
-}
-
-function route() {
-    // 路由(示例为暂未开通界面)
-    AppInterface.callHandler("route", { "url": "router.app.not-available", "param": "" }, function(responseData) {
-        document.getElementById("show").innerHTML = "result :" + responseData;
-    });
+    alert('Page loaded');
 }
 
 function openCqCity() {
@@ -166,67 +93,7 @@ function openCqCity() {
     }
 }
 
-function openCmcc() {
-    //打开手厅
-    AppInterface.callHandler("openSysBrowser", { "packageName": "", "className": "", "url": "cqmcapp://wap.cq.10086.cn/app" });
-}
 
-function openOrder() {
-    //网页打开订购页面
-    AppInterface.callHandler("route", { "url": "router.payment.open-vip", "param": "" }, function(responseData) {
-        document.getElementById("show").innerHTML = "result :" + responseData;
-    });
-}
-
-function openCmccClient() {
-    //打开手厅页面
-    AppInterface.callHandler("openWindow", { "type": "WEB", "jsonParam": "{'productUrl': 'http://wap.cq.10086.cn/app?service=page/app.mobilemall.PackageDetail&listener=initPage&packageNum=SBY&qd2=cqc001','productTitle':'大城卡'}" },
-        function(responseData) {
-            document.getElementById("show").innerHTML = "result :" + responseData;
-        });
-}
-
-function openYstClient() {
-    //打开易视腾播放页面
-    var jsonParam = {
-        "openLogin": "Y",
-        "productDetail": JSON.stringify({
-            "enterType": "",
-            "videoType": "vod",
-            "businessType": "",
-            "playType": "",
-            "programSetId": "3444904",
-            "programId": "",
-            "programName": "最好的安排",
-            "programUrl": "",
-            "uuid": "",
-            "startTime": 1500244173000,
-            "endTime": 1500247470000,
-            "startWatchTime": 0,
-            "endWatchTime": 0,
-            "currentPlayTime": 0,
-            "roomId": "",
-            "mediaStartTime": 0,
-            "seriesNumber": 0,
-            "unionType": "",
-            "mediaData": "",
-            "channelLogo": "",
-            "channelName": "",
-            "programSeriesName": ""
-        })
-    };
-    AppInterface.callHandler("openWindow", { "type": "YST_VIDEO_PLAY", "jsonParam": JSON.stringify(jsonParam) }, function(responseData) {
-        document.getElementById("show").innerHTML = "result :" + responseData;
-    });
-}
-
-function getOpenId() {
-    AppInterface.callHandler("getOpenId", { "channelCode": "oldcqcity", "tokenCode": "SV3VSA34P6YTNYI2EKRWGW0AUQFR5VKLW848GO47MBHKF2VJHX" }, function(responseData) {
-        document.getElementById("show").innerHTML = "result :" + JSON.stringify(JSON.parse(responseData));
-        data = JSON.parse(responseData);
-        console.log(data['data']['openSessionId']);
-    });
-}
 </script>
 
 </html>
