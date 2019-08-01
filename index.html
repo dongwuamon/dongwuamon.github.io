@@ -55,8 +55,9 @@
         </p>
     </div>
 </body>
+<script type="text/javascript" src="/jquery/jquery.js"></script>
 <script>
-window.ready(function ()) {
+$(document).ready(function() {
     alert("ready")
 
     var toast = getQueryVariable("image")
@@ -68,7 +69,8 @@ window.ready(function ()) {
             metaList[i].content = toast;
         }
     }
-}
+});
+
 
 function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
