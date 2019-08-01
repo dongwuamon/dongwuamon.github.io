@@ -3,24 +3,19 @@
 <head>
     <link rel="dns-prefetch" href="http://p0.sgpstatp.com/">
     <link rel="dns-prefetch" href="http://s0.sgpstatp.com/">
-    <!-- 我的 -->
-    <!-- <meta property="og:url" content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="amon">
-    <meta property="og:description" content="How much does culture influence creative thinking?">
-    <meta property="og:image" content="http://pic24.nipic.com/20120922/10898738_143746326185_2.jpg">
-    <meta property="og:image:width" content="500">
-    <meta property="og:image:height" content="260">
-    <meta property="fb:app_id" content="419777048610850"> -->
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         js调用java
     </title>
+
+    <meta property="al:android:url" content="wxcitycq://d1.wxcitycq.com/openwith" />
+    <meta property="al:android:app_name" content="Calamansi" />
+    <meta property="al:android:package" content="com.ganhai.phtt" />
     <meta property="og:url" content="http://192.168.1.165/calamansi/bridge.html">
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="propertydd" />
-    <meta property="og:description" content="desciption" />
+    <meta property="og:title" content="thisistitle" />
+    <meta property="og:description" content="thisisdesc" />
     <meta property="og:image" content="https://p0.sgpstatp.com/img/tos-alisg-i-0000/1ec67cfb286546b9be3c3d3a076cb1b0~cs_500x260.image" />
     <meta property="og:image:width" content="500" />
     <meta property="og:image:height" content="260" />
@@ -55,34 +50,7 @@
         </p>
     </div>
 </body>
-<script type="text/javascript" src="/jquery/jquery.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    alert("ready")
-
-    var toast = getQueryVariable("image")
-    alert(toast);
-
-    var metaList = document.getElementsByTagName("meta");
-    for (var i = 0; i < metaList.length; i++) {
-        if (metaList[i].getAttribute("property") == "og:image") {
-            metaList[i].content = toast;
-        }
-    }
-});
-
-
-function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split("&");
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split("=");
-        if (pair[0] == variable) { return pair[1]; }
-    }
-    return (false);
-}
-
-
+<script>
 function getUserInfo() {
     alert("onload")
 }
