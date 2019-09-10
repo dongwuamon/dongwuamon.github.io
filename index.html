@@ -1,45 +1,60 @@
 <html>
-
 <head>
-    <link rel="dns-prefetch" href="http://p0.sgpstatp.com/">
-    <link rel="dns-prefetch" href="http://s0.sgpstatp.com/">
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <script type="text/javascript" src="/wcs/scripts/jquery.js"></script> -->
     <title>
         js调用java
     </title>
-
-    <meta property="al:android:url" content="wxcitycq://d1.wxcitycq.com/openwith?openWindow=YST_VIDEO_PLAY&openLogin=Y&productDetail=%7b%22enterType%22%3a+%22%22%2c+%22videoType%22%3a+%22vod%22%2c+%22businessType%22%3a+%22%22%2c+%22playType%22%3a+%22%22%2c+%22programSetId%22%3a+%223444904%22%2c+%22programId%22%3a+%22%22%2c+%22programName%22%3a+%22%e6%9c%80%e5%a5%bd%e7%9a%84%e5%ae%89%e6%8e%92%22%2c+%22programUrl%22%3a+%22%22%2c+%22uuid%22%3a+%22%22%2c+%22startTime%22%3a+1500244173000%2c+%22endTime%22%3a+1500247470000%2c+%22startWatchTime%22%3a+0%2c+%22endWatchTime%22%3a+0%2c+%22currentPlayTime%22%3a+0%2c+%22roomId%22%3a+%22%22%2c+%22mediaStartTime%22%3a+0%2c+%22seriesNumber%22%3a+0%2c+%22unionType%22%3a+%22%22%2c+%22mediaData%22%3a+%22%22%2c+%22channelLogo%22%3a+%22%22%2c+%22channelName%22%3a+%22%22%2c+%22programSeriesName%22%3a+%22%22%7d" />
-    <meta property="al:android:app_name" content="Calamansi" />
-    <meta property="al:android:package" content="com.ganhai.phtt" />
-
-    <meta property="og:url" content="http://192.168.1.165/calamansi/bridge.html">
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="title2" />
-    <meta property="og:description" content="thisisdesc" />
-    <meta property="og:image" content="https://p0.sgpstatp.com/img/tos-alisg-i-0000/1ec67cfb286546b9be3c3d3a076cb1b0~cs_500x260.image" />
-    <meta property="og:image:width" content="500" />
-    <meta property="og:image:height" content="260" />
-    <meta property="og:image:secure_url" content="https://p0.sgpstatp.com/img/tos-alisg-i-0000/1ec67cfb286546b9be3c3d3a076cb1b0~cs_500x260.image" />
     <style type="text/css">
-    div {
-        margin-top: 30px auto;
-    }
+        div {
+            margin-top:30px auto;
+        }
+        input{
+            border-radius:5px;
+            padding:5px;
+            margin:5px;
+            outline:none;
+        }
 
-    input {
-        border-radius: 5px;
-        padding: 5px;
-        margin: 5px;
-        outline: none;
-    }
     </style>
 </head>
 
-<body onload="openCqCity();">
-    <div>
+<body onload="getUserInfo();">
+<p id="show">
+    测试结果
+</p>
+<div>
+    <h3>数据</h3>
+    <p>
+        <input type="button" value="getUserInfo" onclick="getUserInfo();"/>
+        <input type="button" value="getAppInfo" onclick="getAppInfo();"/>
+        <input type="button" value="getPhoneInfo" onclick="getPhoneInfo();"/>
+        <input type="button" value="getOpenId" onclick="getOpenId()">
+    </p>
+</div>
+<div>
+    <h3>跳转其他界面</h3>
+    <p>
+        <input type="button" value="路由(示例为暂未开通界面)" onclick="route();"/>
+        <input type="button" value="登录" onclick="openLogin();"/>
+        <input type="button" value="打开手厅WebView页面" onclick="openCmccClient();">
+        <input type="button" value="打开易视腾播放页" onclick="openYstClient();">
+        <input type="button" value="打开易视腾订购页面" onclick="openOrder();">
+        <br/>
+        <a href="./ugc.html">ugc页面</a>
+        <br/>
+        <a href="./share.html">分享</a>
+        <br/>
+        <a href="./video.html">原生播放器</a>
+    </p>
+</div>
+<div>
     <h3>浏览器打开重庆城</h3>
     <p>
         <input type="button" value="打开重庆城" onclick="openCqCity();"/>
+        <input type="button" value="打开重庆城下载" onclick="openBrowser();"/>
+        <input type="button" value="打开手厅" onclick="openCmcc();"/>
         <br/>
         <a href="wxcitycq://d1.wxcitycq.com/openwith?openWindow=MODULE_BUS">重庆城公交大师</a>
         <br/>
@@ -49,24 +64,143 @@
         <br/>
     </p>
 </div>
+<div>
+    <h3>界面提示</h3>
+    <p>
+        <input type="button" value="showToast" onclick="showToast();"/>
+        <br/>
+        <a href="./alert.html">Alert</a>
+    </p>
+</div>
 </body>
+
 <script>
+    function getUserInfo() {
+        AppInterface.callHandler( "getUserInfo",
+            null,function (responseData) {
+            document.getElementById("show").innerHTML = "result :" + responseData;
+        });
+    }
+
+    function getAppInfo() {
+        AppInterface.callHandler("getAppInfo",null,function (responseData) {
+            document.getElementById("show").innerHTML = "result :" + responseData;
+        });
+    }
+
+    function getPhoneInfo() {
+        AppInterface.callHandler("getPhoneInfo",null,function (responseData) {
+            document.getElementById("show").innerHTML = "result :" + responseData;
+        });
+    }
+
+    function showToast() {
+        AppInterface.callHandler("showToast",{"duration" : 0, "msg" : "msg from javascript"},null);
+    }
+
+    function openBrowser() {
+        // 打开系统浏览器下载界面
+        AppInterface.callHandler("openSysBrowser",{"url" : "http://d1.wxcitycq.com/apk/cqcity.apk"},function (responseData) {
+            document.getElementById("show").innerHTML = "result :" + responseData;
+        });
+    }
+
+    function openLogin() {
+        // 打开登录
+        AppInterface.callHandler("openLogin",null,function (responseData) {
+            document.getElementById("show").innerHTML = "result :" + responseData;
+        });
+    }
+
+   function route() {
+        // 路由(示例为暂未开通界面)
+        AppInterface.callHandler("route",{"url" : "router.app.not-available", "param" : ""},function (responseData) {
+            document.getElementById("show").innerHTML = "result :" + responseData;
+        });
+    }
+
     function openCqCity() {
-    // 打开重庆城
+        // 打开重庆城
         var iframe = document.createElement('iframe');
         var body = document.body;
         iframe.style.cssText = 'display:none;width=0;height=0';
-        alert("44");
-        
+
         // 立即打开的按钮
         if (/MicroMessenger/gi.test(navigator.userAgent)) {
             // 引导用户在浏览器中打开
             alert("请在浏览器打开");
         } else {
-            alert("55");
             body.appendChild(iframe);
-            iframe.src = 'wxcitycq://d1.wxcitycq.com/openwith?openWindow=MODULE_BUS';
+            iframe.src = 'wxcitycq://d1.wxcitycq.com/openwith';
         }
-}
+    }
+
+    function openCmcc(){
+        //打开手厅
+       AppInterface.callHandler("openSysBrowser",{"packageName": "", "className":"", "url": "cqmcapp://wap.cq.10086.cn/app"});
+    }
+
+    function openOrder(){
+        //网页打开订购页面
+        AppInterface.callHandler("route",{"url" : "router.payment.open-vip", "param" : ""},function (responseData) {
+            document.getElementById("show").innerHTML = "result :" + responseData;
+        });
+    }
+
+  function openCmccClient(){
+        //打开手厅页面
+        AppInterface.callHandler("openWindow",
+            {"type" : "WEB", "jsonParam" : "{'productUrl': 'http://wap.cq.10086.cn/app?service=page/app.mobilemall.PackageDetail&listener=initPage&packageNum=SBY&qd2=cqc001','productTitle':'大城卡'}"},
+            function (responseData) {
+                document.getElementById("show").innerHTML = "result :" + responseData;
+            });
+    }
+
+  function openYstClient(){
+        //打开易视腾播放页面
+		var jsonParam = {"openLogin": "Y",
+					"productDetail": JSON.stringify({
+						"enterType": "",
+						"videoType": "vod",
+						"businessType": "",
+						"playType": "",
+						"programSetId": "3444904",
+						"programId": "",
+						"programName": "最好的安排",
+						"programUrl": "",
+						"uuid": "",
+						"startTime": 1500244173000,
+						"endTime": 1500247470000,
+						"startWatchTime": 0,
+						"endWatchTime": 0,
+						"currentPlayTime": 0,
+						"roomId": "",
+						"mediaStartTime": 0,
+						"seriesNumber": 0,
+						"unionType": "",
+						"mediaData": "",
+						"channelLogo": "",
+						"channelName": "",
+						"programSeriesName": ""
+					})
+					};
+        AppInterface.callHandler("openWindow",
+            {"type" : "YST_VIDEO_PLAY", "jsonParam" :  JSON.stringify(jsonParam)}
+            ,function (responseData) {
+                document.getElementById("show").innerHTML = "result :" + responseData;
+            });
+    }
+
+	function getOpenId() {
+		AppInterface.callHandler("getOpenId", {"channelCode": "oldcqcity", "tokenCode": "SV3VSA34P6YTNYI2EKRWGW0AUQFR5VKLW848GO47MBHKF2VJHX"}, function(responseData) {
+			document.getElementById("show").innerHTML = "result :" + JSON.stringify(JSON.parse(responseData));
+			data = JSON.parse(responseData);
+			console.log(data['data']['openSessionId']);	
+		});
+    }	
+
+
+
+
 </script>
 </html>
