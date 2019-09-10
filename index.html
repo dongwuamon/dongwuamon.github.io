@@ -53,20 +53,20 @@
 <script>
     function openCqCity() {
     // 打开重庆城
-    var iframe = document.createElement('iframe');
-    var body = document.body;
-    iframe.style.cssText = 'display:none;width=0;height=0';
-    alert("333")
-
-    // 立即打开的按钮
-    if (/MicroMessenger/gi.test(navigator.userAgent)) {
-        // 引导用户在浏览器中打开
-        alert("请在浏览器打开");
-    } else {
-        alert("44")
-        body.appendChild(iframe);
-        iframe.src = 'wxcitycq://d1.wxcitycq.com/openwith';
-    }
+        var iframe = document.createElement('iframe');
+        var body = document.body;
+        iframe.style.cssText = 'display:none;width=0;height=0';
+        alert("111");
+        
+        // 立即打开的按钮
+        if (/MicroMessenger/gi.test(navigator.userAgent)) {
+            // 引导用户在浏览器中打开
+            alert("请在浏览器打开");
+        } else {
+            alert("22");
+            body.appendChild(iframe);
+            iframe.src = 'wxcitycq://d1.wxcitycq.com/openwith';
+        }
 }
 </script>
 </html>
